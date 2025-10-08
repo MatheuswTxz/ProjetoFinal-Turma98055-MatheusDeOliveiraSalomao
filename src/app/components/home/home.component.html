@@ -1,0 +1,34 @@
+<section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Bem-vindo à ONG A Esperança</h1>
+          <p>Acreditamos no poder da esperança e da transformação. Nosso objetivo é ajudar pessoas a encontrarem suporte, informações e recursos que realmente fazem a diferença no dia a dia.</p>
+          <div class="hero-buttons">
+            <button routerLink="/sobre-nos" class="btn-primary">Sobre Nós</button>
+            <button routerLink="/doacao" class="btn-secondary">Doe Agora</button>
+          </div>
+        </div>
+    <div class="hero-carousel">
+  <div class="carousel-container">
+    <div class="carousel-slide" [class.active]="currentSlide === 0">
+      <img src="/carrosel1%20(1).png" alt="Doação de alimentos" class="carousel-image">
+      <p>Transforme vidas através do amor e solidariedade</p>
+    </div>
+    <div class="carousel-slide" [class.active]="currentSlide === 1">
+      <img src="/carrosel1%20(2).png" alt="Doação colaborativa" class="carousel-image">
+      <p>Voluntários dedicados, cada gesto conta!</p>
+    </div>
+    <div class="carousel-slide" [class.active]="currentSlide === 2">
+      <img src="/carrosel1%20(3).png" alt="Apoio e esperança" class="carousel-image">
+      <p>Levando esperança para quem mais precisa</p>
+    </div>
+  </div>
+  <div class="carousel-dots">
+    <span 
+      *ngFor="let slide of slides; let i = index" 
+      class="dot" 
+      [class.active]="currentSlide === i"
+      (click)="goToSlide(i)">
+    </span>
+  </div>
+</div>
