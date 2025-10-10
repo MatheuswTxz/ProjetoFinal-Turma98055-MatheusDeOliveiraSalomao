@@ -15,21 +15,27 @@
     <div class="hero-carousel">
       <div class="carousel-container">
         <div class="carousel-slide" [class.active]="currentSlide === 0">
-          <div class="carousel-icon" style="font-size: 60px; margin-bottom: 10px;">🌱</div>
+          <div class="carousel-icon">
+            <i class="fas fa-seedling" style="font-size: 60px; margin-bottom: 10px; color: #4ade80;"></i>
+          </div>
           <div class="slide-content">
             <h3>Transformando Vidas</h3>
             <p>Através do amor e solidariedade fazemos a diferença</p>
           </div>
         </div>
         <div class="carousel-slide" [class.active]="currentSlide === 1">
-          <div class="carousel-icon" style="font-size: 60px; margin-bottom: 10px;">👥</div>
+          <div class="carousel-icon">
+            <i class="fas fa-hands-helping" style="font-size: 60px; margin-bottom: 10px; color: #4ade80;"></i>
+          </div>
           <div class="slide-content">
             <h3>Voluntários Dedicados</h3>
             <p>Cada gesto conta na construção de um mundo melhor</p>
           </div>
         </div>
         <div class="carousel-slide" [class.active]="currentSlide === 2">
-          <div class="carousel-icon" style="font-size: 60px; margin-bottom: 10px;">💖</div>
+          <div class="carousel-icon">
+            <i class="fas fa-heart" style="font-size: 60px; margin-bottom: 10px; color: #4ade80;"></i>
+          </div>
           <div class="slide-content">
             <h3>Esperança Renovada</h3>
             <p>Levando esperança para quem mais precisa</p>
@@ -56,7 +62,9 @@
     <h2>Como Podemos Ajudar</h2>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon" style="font-size: 40px;">👥</div>
+        <div class="feature-icon">
+          <i class="fas fa-users" style="font-size: 40px; color: #22c55e;"></i>
+        </div>
         <h3>Voluntariado</h3>
         <p>
           Participe de nossas ações e faça a diferença na vida de quem precisa.<br>
@@ -65,7 +73,9 @@
         <a routerLink="/sobre-nos" class="btn-outline">Saiba Mais</a>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" style="font-size: 40px;">💖</div>
+        <div class="feature-icon">
+          <i class="fas fa-donate" style="font-size: 40px; color: #22c55e;"></i>
+        </div>
         <h3>Doações</h3>
         <p>
           Sua contribuição ajuda a manter nossos projetos e a alcançar mais pessoas que precisam de apoio.
@@ -73,7 +83,9 @@
         <a routerLink="/doacao" class="btn-outline">Doar Agora</a>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" style="font-size: 40px;">🤝</div>
+        <div class="feature-icon">
+          <i class="fas fa-hands" style="font-size: 40px; color: #22c55e;"></i>
+        </div>
         <h3>Apoio</h3>
         <p>
           Oferecemos suporte emocional e social para quem mais precisa.

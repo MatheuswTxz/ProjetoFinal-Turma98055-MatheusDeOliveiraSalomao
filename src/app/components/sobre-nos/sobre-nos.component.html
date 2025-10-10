@@ -7,9 +7,9 @@
   <div class="team-list">
     <h3>Equipe</h3>
     <ul>
-      <li>Maria - Coordenadora 👩‍💼</li>
-      <li>João - Voluntário 👨‍💼</li>
-      <li>Ana - Assistente Social 👩‍⚕️</li>
+      <li *ngFor="let membro of equipe">
+        <i [class]="membro.icon"></i> {{ membro.nome }} - {{ membro.cargo }}
+      </li>
     </ul>
   </div>
   <div class="values">
@@ -17,9 +17,9 @@
     <p>Promover suporte, inclusão e transformação social com responsabilidade.</p>
     <h3>Valores</h3>
     <ul>
-      <li>Solidariedade 🤝</li>
-      <li>Esperança 🌱</li>
-      <li>Transparência 💎</li>
+      <li><i class="fas fa-handshake"></i> Solidariedade</li>
+      <li><i class="fas fa-seedling"></i> Esperança</li>
+      <li><i class="fas fa-gem"></i> Transparência</li>
     </ul>
   </div>
 </section>

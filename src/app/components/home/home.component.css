@@ -240,8 +240,6 @@
   background: transparent;  
 }
 
-
-
 @media (max-width: 768px) {
     .hero-content {
         grid-template-columns: 1fr;
