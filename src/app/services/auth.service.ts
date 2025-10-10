@@ -22,31 +22,54 @@ export class AuthService {
   constructor() {
     // Verificar se há usuário logado no localStorage
     const user = localStorage.getItem('currentUser');
+    console.log('AuthService: Checking for existing user in localStorage', user);
     if (user) {
-      this.currentUserSubject.next(JSON.parse(user));
+      const parsedUser = JSON.parse(user);
+      this.currentUserSubject.next(parsedUser);
       this.loggedInSubject.next(true);
+      console.log('AuthService: User found in localStorage, setting logged in state to true');
+    } else {
+      console.log('AuthService: No user found in localStorage, setting logged in state to false');
+    }
+    // Garante que usuários padrão existem no localStorage
+    this.ensureDefaultUsers();
+  }
+
+  private ensureDefaultUsers() {
+    const usuarios = localStorage.getItem('usuarios');
+    if (!usuarios) {
+      const defaultUsuarios = [
+        { id: 1, nome: 'Admin', email: 'admin@email.com', senha: 'admin123', ativo: true },
+        { id: 2, nome: 'Usuário', email: 'usuario@email.com', senha: '123456', ativo: true }
+      ];
+      localStorage.setItem('usuarios', JSON.stringify(defaultUsuarios));
     }
   }
 
   login(email: string, senha: string): Observable<boolean> {
     return new Observable(observer => {
-      // Simulação de login - em produção, fazer chamada para API
       const usuarios = this.getUsuarios();
       const usuario = usuarios.find(u => u.email === email && u.senha === senha);
-      
       if (usuario) {
         const userSemSenha = { ...usuario };
         delete userSemSenha.senha;
-        
         localStorage.setItem('currentUser', JSON.stringify(userSemSenha));
         this.currentUserSubject.next(userSemSenha);
         this.loggedInSubject.next(true);
+        console.log('AuthService: Login successful, setting logged in state to true');
+        console.log('AuthService: Current loggedInSubject value after setting:', this.loggedInSubject.value);
         
-        observer.next(true);
+        // Add a small delay to ensure state propagation
+        setTimeout(() => {
+          console.log('AuthService: After timeout, loggedInSubject value:', this.loggedInSubject.value);
+          observer.next(true);
+          observer.complete();
+        }, 0);
       } else {
+        console.log('AuthService: Login failed, invalid credentials');
         observer.next(false);
+        observer.complete();
       }
-      observer.complete();
     });
   }
 
@@ -54,25 +77,19 @@ export class AuthService {
     return new Observable(observer => {
       try {
         const usuarios = this.getUsuarios();
-        
-        // Verificar se email já existe
         if (usuarios.find(u => u.email === usuario.email)) {
           observer.next(false);
           observer.complete();
           return;
         }
-        
-        // Adicionar novo usuário
         const novoUsuario = {
           ...usuario,
           id: Date.now(),
           dataCadastro: new Date(),
           ativo: true
         };
-        
         usuarios.push(novoUsuario);
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
-        
         observer.next(true);
       } catch (error) {
         observer.next(false);
@@ -85,9 +102,11 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.loggedInSubject.next(false);
+    console.log('AuthService: Logout successful, setting logged in state to false');
   }
 
   isLoggedIn(): Observable<boolean> {
+    console.log('AuthService: isLoggedIn() called, current value:', this.loggedInSubject.value);
     return this.loggedInSubject.asObservable();
   }
 
@@ -97,6 +116,14 @@ export class AuthService {
 
   private getUsuarios(): Usuario[] {
     const usuarios = localStorage.getItem('usuarios');
-    return usuarios ? JSON.parse(usuarios) : [];
+    if (!usuarios) {
+      // Garante usuários padrão sempre
+      this.ensureDefaultUsers();
+      return [
+        { id: 1, nome: 'Admin', email: 'admin@email.com', senha: 'admin123', ativo: true },
+        { id: 2, nome: 'Usuário', email: 'usuario@email.com', senha: '123456', ativo: true }
+      ];
+    }
+    return JSON.parse(usuarios);
   }
 }

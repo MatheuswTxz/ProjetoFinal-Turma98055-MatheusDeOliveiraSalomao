@@ -1,0 +1,24 @@
+<section class="admin">
+  <h2>Área Administrativa</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Valor Doado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.nome }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span *ngIf="user.doou; else notDonated">Doou</span>
+          <ng-template #notDonated><span>Não doou</span></ng-template>
+        </td>
+        <td>{{ user.valor ? ('R$ ' + user.valor) : '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

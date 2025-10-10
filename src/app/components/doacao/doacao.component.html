@@ -1,1 +1,40 @@
-<p>doacao works!</p>
+<section class="doacao">
+  <h2>Faça uma Doação</h2>
+  <div *ngIf="isLoggedIn">
+    <table class="doacao-tabela">
+      <thead>
+        <tr>
+          <th>Valor Sugerido</th>
+          <th>Forma de Pagamento</th>
+          <th>Doar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let opcao of valoresSugeridos">
+          <td>R$ {{ opcao.valor }}</td>
+          <td>{{ opcao.pagamento | titlecase }}</td>
+          <td>
+            <button (click)="doarRapido(opcao.valor, opcao.pagamento)" class="btn-primary">
+              Doar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form (ngSubmit)="onSubmit()">
+      <label for="valor">Valor Personalizado:</label>
+      <input id="valor" type="number" [(ngModel)]="valor" name="valor" required>
+      <label for="pagamento">Forma de Pagamento:</label>
+      <select id="pagamento" [(ngModel)]="pagamento" name="pagamento">
+        <option value="pix">PIX</option>
+        <option value="boleto">Boleto</option>
+        <option value="cartao">Cartão</option>
+      </select>
+      <button type="submit" class="btn-primary">Doar Valor Personalizado</button>
+    </form>
+    <div *ngIf="mensagem" class="mensagem-doacao">{{ mensagem }}</div>
+  </div>
+  <div *ngIf="!isLoggedIn">
+    <p>Para doar, é necessário <a routerLink="/login" class="link-action">fazer login</a>.</p>
+  </div>
+</section>

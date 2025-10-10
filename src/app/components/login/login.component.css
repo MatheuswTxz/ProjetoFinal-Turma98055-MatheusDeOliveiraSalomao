@@ -1,0 +1,85 @@
+.login {
+  background: #fff;
+  padding: 2.2rem 1.7rem;
+  border-radius: 14px;
+  box-shadow: 0px 4px 16px rgba(35,201,118,0.10);
+  max-width: 350px;
+  margin: 2rem auto;
+}
+
+.login h2 {
+  color: #23c976;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="email"], input[type="password"] {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+button.btn-primary {
+  background: #23c976;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button.btn-primary:hover {
+  background: #1ba367;
+}
+
+button.btn-outline {
+  background: #fff;
+  color: #23c976;
+  border: 2px solid #23c976;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 0.6rem;
+  cursor: pointer;
+}
+
+.lgpd-checkbox {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.lgpd-checkbox input[type="checkbox"] {
+  accent-color: #23c976;
+  margin-right: 8px;
+}
+
+.lgpd-checkbox label {
+  font-size: 0.98rem;
+  color: #333;
+}
+.warn-lgpd {
+  color: #e86830;
+  background: #fff4ec;
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1.5px solid #ffd5b9;
+}
